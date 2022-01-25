@@ -7,12 +7,14 @@ filename='style.css') }}">
 <title>Let's Blog!</title>
 </head>
 <body>
-<div id="header">
-<a href="{{ url_for('home') }}" class="header">Home</a>&nbsp
-<a href="{{ url_for('about') }}" class="header">About Us</a>&nbsp
-<a href="{{ url_for('register') }}" class="header">Register</a>
-<a href="{{ url_for('login') }}" class="header">Login</a>
-<a href="{{ url_for('logout') }}" class="header">Logout</a>
+<div id="top_navig_bar">
+  <ul>
+   <li> <a href="{{ url_for('home') }}" class="header">Home</a></li>
+  <li><a href="{{ url_for('about') }}" class="header">About Us</a></li>
+  <li><a href="{{ url_for('register') }}" class="header">Register</a></li>
+  <li><a href="{{ url_for('login') }}" class="header">Login</a></li>
+  <li><a href="{{ url_for('logout') }}" class="header">Logout</a></li>
+  </ul>
 </div>
 
 <div>
