@@ -1,6 +1,25 @@
 {% extends "layout.html" %}
 {% block content %}
 <img src="{{ url_for('static', filename='img/' + post.image_file) }}">
-<p>"{{ post.title }}" &nbsp Author: {{ post.user.username }}</p>
+<p>"{{ post.title }}" &nbsp Author: {{ post.user.first_name }}</p>
 <p>{{ post.content }}</p>
+{% for comment in post.comments %}
+{{comment.user.first_name}}
+{{comment.content}}
+{% endfor %}
+<form action="/post/{{post.id}}/comment" method="POST">
+    {{ form.csrf_token }}
+
+{{ form.content }}
+<input type="submit" value="Add Comment">
+</form>
+
+<form action="/post/{{post.id}}/rating" method="POST">
+{{ form_rating.csrf_token }}
+{{ form_rating.stars }}
+<input type="submit" value="Add Rating">
+</form>
+{% for rating in post.ratings %}
+{{ rating.stars }}
+{% endfor %}
 {% endblock content %}
