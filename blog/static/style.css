@@ -39,6 +39,21 @@ html {
 .content {
   padding: 4.4rem 0 3.6rem 0;
 }
+.filter {
+  margin: 1rem 1rem;
+}
+.filterBtn {
+  transition-duration: 0.4s;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+}
+.filterBtn:active {
+  background-color: Black;
+  color: white;
+}
+.filterForm {
+  padding: 0.5rem 1rem;
+}
 
 .blog_post {
   width: 90%;
@@ -101,7 +116,6 @@ html {
 }
 .card .thumb {
   size: cover;
-  position: center center;
 }
 
 .flashes {
@@ -150,6 +164,7 @@ html {
 }
 .entry__content-media img {
   vertical-align: bottom;
+  max-width: 80%;
 }
 .post_rating {
   padding: 1rem;
@@ -168,7 +183,7 @@ html {
   padding-bottom: 1.2rem;
   border-top: 1px solid black;
 }
-.comments ul {
+.comment_text ul {
   list-style-type: none;
 }
 .commentList {
@@ -278,4 +293,74 @@ input[type="password"] {
 input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
+}
+
+footer {
+  bottom: 0;
+  margin-top: 3rem;
+}
+.footer-distributed {
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding: 45px 50px;
+}
+
+.footer-distributed .footer-left p {
+  color: #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+/* Footer links */
+
+.footer-distributed p.footer-links {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 10px;
+  padding: 0;
+  transition: ease 0.25s;
+}
+
+.footer-distributed p.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+  transition: ease 0.25s;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "·";
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+.footer-distributed p.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+
+@media (max-width: 600px) {
+  .footer-distributed .footer-left {
+    text-align: center;
+  }
+  .footer-distributed {
+    float: none;
+    margin: 0 auto 20px;
+  }
+  .footer-distributed .footer-left p.footer-links {
+    line-height: 1.8;
+  }
 }

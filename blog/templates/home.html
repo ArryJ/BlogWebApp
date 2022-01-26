@@ -1,8 +1,8 @@
 {% extends "layout.html" %} {% block content %}
 <div class="filter">
   <form action="" method="POST">
-    {{form.csrf_token}} {{form.sort_by}}
-    <input type="submit" value="Filter" class="FilterBtn" />
+    {{form.csrf_token}} {{form.sort_by(class_="filterForm")}}
+    <input type="submit" value="Filter" class="filterBtn" />
   </form>
 </div>
 
@@ -14,6 +14,8 @@
         src="{{ url_for('static', filename='img/' + post.image_file) }}"
         alt=""
         class="thumb"
+        width="354px"
+        height="auto"
       />
       <article>
         <h1 class="post_title">"{{ post.title }}"</h1>

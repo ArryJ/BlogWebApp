@@ -4,7 +4,7 @@
     <div class="post">
       <article class="entry">
         <header class="entry__header">
-          <h2 class="entry__title h1">{{post.title}}</h2>
+          <h2 class="post_title h1">{{post.title}}</h2>
 
           <div class="entry__meta">
             <ul>
@@ -18,12 +18,12 @@
         <div class="entry__content-media">
           <img
             src="{{ url_for('static', filename='img/' + post.image_file) }}"
-            sizes="(max-width: 1000px) 100vw, 1000px"
+            sizes="(max-width: 600px) 60vw, 600px"
             alt=""
           />
         </div>
 
-        <div class="entry__content">
+        <div class="detailed_description">
           <p>{{ post.content }}</p>
         </div>
         <!-- entry__content -->
@@ -33,8 +33,10 @@
     <div class="post_rating">
       {% set total = [] %} {% for rating in post.ratings %} {% if
       total.append(rating.stars) %} {% endif %} {% endfor %} {% if total|length
-      == 0 %} Average Rating: 0 (No rating given) {% else %} Average Rating: {{
-      total | sum / total | length }}
+      == 0 %} Average Rating: 0 (No rating given) {% elif total|length == 1 %}
+      Average Rating: {{ total | sum / total | length }}
+      <span>(Rating by {{total | length}} user.)</span> {% else %} Average
+      Rating: {{ total | sum / total | length }}
       <span>(Rating by {{total | length}} users.)</span> {% endif %}
     </div>
     <div class="ratingForm">
@@ -44,7 +46,7 @@
         <input type="submit" value="Add Rating" class="submitBtn" />
       </form>
     </div>
-    <div class="comments">
+    <div class="comment_text">
       <h3>{{post.comments|length}} Comments</h3>
       <ul class="commentList">
         {% for comment in post.comments %}
@@ -54,7 +56,10 @@
               <div class="comment__author">{{comment.user.first_name}}</div>
 
               <div class="comment__meta">
-                <div class="comment__time">{{comment.date}}</div>
+                <div class="comment__time">
+                  {{comment.date.strftime('%d-%m-%Y')}} &nbsp;
+                  {{comment.date.strftime('%I:%M %p')}}
+                </div>
               </div>
             </div>
 

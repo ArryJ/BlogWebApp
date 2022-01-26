@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <link rel=stylesheet type=text/css href="{{ url_for('static',
     filename='style.css') }}">
-    <title>Let's Blog!</title>
+    <title>Arry's Blog</title>
   </head>
   <body>
     <div id="top_navig_bar">
@@ -35,6 +35,22 @@
 
     <div id="content">{% block content %} {% endblock %}</div>
 
-    <footer id="footer"></footer>
+    <footer id="footer" class="footer-distributed">
+      <div class="footer-left">
+        <p class="footer-links">
+          <a class="link-1" href="{{url_for('home')}}">Home</a>
+
+          <a href="#">Disclaimer</a>
+
+          <a href="#">Privacy Policy</a>
+
+          <a href="#">My Email</a>
+
+          <a href="#">My LinkedIn</a>
+        </p>
+
+        <p>Arihant Jain &copy; 2022</p>
+      </div>
+    </footer>
   </body>
 </html>

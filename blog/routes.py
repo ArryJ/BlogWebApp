@@ -68,7 +68,7 @@ def addRating(post_id):
 def register():
   form = RegistrationForm()
   if form.validate_on_submit():
-    user = User(first_name= form.first_name.data, email = form.email.data, password=form.password.data)
+    user = User(first_name= form.first_name_new.data, email = form.email_new.data, password=form.password_new.data)
     db.session.add(user)
     db.session.commit()
     flash('Registration successful!')
@@ -80,7 +80,7 @@ def register():
 def login():
   form = LoginForm()
   if form.validate_on_submit():
-    user = User.query.filter_by(email=form.email.data).first()
+    user = User.query.filter_by(email=form.username.data).first()
     if user is not None and user.verify_password(form.password.data):
       login_user(user)
       flash('You\'ve successfully logged in,'+' '+ current_user.first_name +'!')

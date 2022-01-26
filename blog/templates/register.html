@@ -3,16 +3,19 @@
   <div class="registrationForm">
     <form method="POST" action="">
       {{ form.csrf_token }}
-      <p>{{ form.first_name.label }}: {{ form.first_name }}</p>
-      <p>{{ form.email.label }}: {{ form.email }}</p>
-      <p>{{ form.password.label }}: {{ form.password }}</p>
-      <p>{{ form.repeat_password.label }}: {{ form.repeat_password }}</p>
+      <p>{{ form.first_name_new.label }}: {{ form.first_name_new }}</p>
+      <p>{{ form.email_new.label }}: {{ form.email_new }}</p>
+      <p>{{ form.password_new.label }}: {{ form.password_new }}</p>
+      <p>{{ form.password_confirm.label }}: {{ form.password_confirm }}</p>
       <input type="submit" value="Register" class="registerBtn" />
     </form>
   </div>
 </div>
-{% for error in form.first_name.errors %}
+{% for error in form.first_name_new.errors %}
 <span style="color: red">[{{ error }}]</span>
-{% endfor %} {% for error in form.repeat_password.errors %}
+
+{% endfor %} {% for error in form.password_new.errors %}
+<span style="color: red">[{{ error }}]</span>
+{% endfor %} {% for error in form.password_confirm.errors %}
 <span style="color: red">[{{ error }}]</span>
 {% endfor %} {% endblock content %}
