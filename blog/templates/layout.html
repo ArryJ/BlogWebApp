@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<link rel=stylesheet type=text/css href="{{ url_for('static',
-filename='style.css') }}">
-<title>Let's Blog!</title>
-</head>
-<body>
-<div id="top_navig_bar">
-  <ul>
-   <li> <a href="{{ url_for('home') }}" class="header">Home</a></li>
-  <li><a href="{{ url_for('about') }}" class="header">About Us</a></li>
-  <li><a href="{{ url_for('register') }}" class="header">Register</a></li>
-  <li><a href="{{ url_for('login') }}" class="header">Login</a></li>
-  <li><a href="{{ url_for('logout') }}" class="header">Logout</a></li>
-  </ul>
-</div>
+  <head>
+    <meta charset="utf-8" />
+    <link rel=stylesheet type=text/css href="{{ url_for('static',
+    filename='style.css') }}">
+    <title>Let's Blog!</title>
+  </head>
+  <body>
+    <div id="top_navig_bar">
+      <ul>
+        <li><a href="{{ url_for('home') }}" id="home">Home</a></li>
 
-<div>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
-</div>
+        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('logout') }}" id="logout">Logout</a></li>
 
-<div id="content">
-{% block content %}
-{% endblock %}
-</div>
-</body>
+        <li id="pers_greet">Hello, {{current_user.first_name}}!</li>
+        {% else %}
+        <li><a href="{{ url_for('register') }}" id="register">Register</a></li>
+        <li><a href="{{ url_for('login') }}" id="login">Login</a></li>
+        <li id="pers_greet">Hello, Guest!</li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <div>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+    </div>
+
+    <div id="content">{% block content %} {% endblock %}</div>
+  </body>
 </html>
