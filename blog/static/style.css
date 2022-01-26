@@ -305,7 +305,8 @@ footer {
   box-sizing: border-box;
   width: 100%;
   text-align: left;
-  font: normal 16px sans-serif;
+  font-family: system-ui;
+
   padding: 45px 50px;
 }
 
@@ -318,7 +319,6 @@ footer {
 
 .footer-distributed p.footer-links {
   font-size: 18px;
-  font-weight: bold;
   color: #ffffff;
   margin: 0 0 10px;
   padding: 0;

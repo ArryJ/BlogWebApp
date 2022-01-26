@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from blog import db
 from blog.models import User, Post, Comment, Rating
 
@@ -5,6 +6,18 @@ def add_post(post):
     db.session.add(post)
     db.session.commit()
 
+def add_user(user):
+    db.session.add(user)
+    db.session.commit()
+
+user1 = User(first_name= 'User1', email = 'user1@test.ac.uk', password='passuser1')
+
+user2 = User(first_name= 'User2', email = 'user2@test.ac.uk', password='passuser2')
+
+user3 = User(first_name= 'User3', email = 'user3@test.ac.uk', password='passuser3')
+# add_user(user1)
+# add_user(user2)
+# add_user(user3)
 
 title1 = "IPL Dashboard : My first Full stack project"
 content1 = '''I completed several front-end projects personally and as a freelance developer in 2021, so I had a good grasp of front-end technologies such as HTML, CSS, and JavaScript. My undergraduate degree was in the Electronics and communication field of engineering. Thus, my knowledge in core Computer Science subjects was lacking. I was curious about how data was delivered to the front end and how web requests were handled at the backend. So, I decided to expand my skills by learning more about databases and backend development. The best way in my opinion to learn anything is through making projects. 
@@ -12,21 +25,21 @@ content1 = '''I completed several front-end projects personally and as a freelan
 Indian Premier League (IPL) is a popular form of cricket in India, where players from all over the world come to play for clubs representing different states of India. It’s a huge affair in India where families and friends come around a television to see the match and support their favourite teams. I too am a follower of this tradition. Thus, I decided to create a dashboard with statistics of every match played in the IPL since its inception. To make the backend, I decided to learn Java and the Spring framework to develop a REST api. Java and spring are mature technologies with good community support, this led to the decision for me to use them. For the database, an in-memory embedded H2 rdbms was selected. The reason behind this is that since the data is static and the website just shows the statistics of the matches held, loading data into the rdms each time the application starts won’t be too resource intensive while making the development process easier by packaging the database with the application. The front end is made using HTML, CSS, Bootstrap and React framework to make development easier and its popularity in the front end community. The data to populate the tables was downloaded from an open kaggle database repository.  The database is populated from a CSV file using Spring Batch which makes loading data into the database fast. 
 
 The features to be implemented were decided to be, the front page should be showing the tiles of team names. Clicking on the tiles should take us to that team’s different match statistics. The matches won should be in green and lost in red. The latest 4 matches will be shown in tiles, while a pie chart will display the team’s win percentage alongside the team’s name. There is also a scroll bar on the left where the user can choose the year for which they want to see the past match history for the team. The backend REST api would supply all the data required for the features to be implemented after processing the csv file match data of all the teams. The following are the endpoints that the REST api when hit with a request will be returning the data to: 
-Match List for every team - REST Endpoint → /team/{teamName/}/matches?year='year'; Returns List<Match> data for a particular year.
-{teamName} and 'year' are PathVariables and Query parameters respectively.
-Team List - REST Endpoint → /team; Returns List<Team>
-Fetches team with latest 4 matches played - REST Endpoint → /team/{teamName}
+Match List for every team - REST Endpoint - /team/teamName//matches?year='year'; Returns List<Match> data for a particular year.
+teamName and 'year' are PathVariables and Query parameters respectively.
+Team List - REST Endpoint - /team; Returns List<Team>
+Fetches team with latest 4 matches played - REST Endpoint - /team/teamName
 Returns Team object
 
 The spring boot backend has been divided into just 2 layers -
 
-Controller layer → This layer maps the resources to call the repository method that returns the appropriate response. There is only one controller that is TeamController present.
-Data Layer → This layer consists of 2 entities - Team & Match. Consecutively there are two repositories MatchRepository and TeamRepository to connect to the in-memory database using Spring JPA hibernate. Which in turn runs JPQL queries to extract desired data from the H2 database. 
+Controller layer - This layer maps the resources to call the repository method that returns the appropriate response. There is only one controller that is TeamController present.
+Data Layer - This layer consists of 2 entities - Team & Match. Consecutively there are two repositories MatchRepository and TeamRepository to connect to the in-memory database using Spring JPA hibernate. Which in turn runs JPQL queries to extract desired data from the H2 database. 
 The data package consists of the Spring batch configurations, jobs instructions, Reader, writer and processor logic for each step. Spring batch reads data in chunks, processes them, and then writes them all at once into the database by mapping MatchInput to Match object. The Team gets populated after the job finishes.
 
 The front end is then made keeping all the functionalities in mind and by getting data from backend by making REST calls to the developed REST api. Another technology that was learnt through this project is git. Git is the most powerful tool in a developer’s skills that in my opinion anyone can use whether they are into software development or not. I myself use git to not only store my code but documents too so that I can use them whenever I want, wherever I am.
 '''
-summary1 ="My first full stack project and my motivation to explore backend development is explained through this post. The various design decisions and my learning journey will give a beginner developer an insight on how to tackle problems while creating projects."
+summary1 = "My first full stack project and my motivation to explore backend development is explained through this post. The various design decisions and my learning journey will give a beginner developer an insight on how to tackle problems while creating projects."
 image_file1 ="post1.png" 
 author_id1 = 1
 post1 = Post(title = title1, content = content1, summary = summary1, image_file = image_file1, author_id = author_id1)
@@ -104,9 +117,9 @@ author_id4 = 1
 post4 = Post(title = title4, content = content4, summary = summary4, image_file = image_file4, author_id = author_id4)
 
 
-# add_post(post1)
+add_post(post1)
 # add_post(post2)
 # add_post(post3)
-add_post(post4)
+# add_post(post4)
 
 
