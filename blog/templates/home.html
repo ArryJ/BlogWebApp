@@ -1,4 +1,10 @@
 {% extends "layout.html" %} {% block content %}
+<div class="filter">
+  <form action="" method="POST">
+    {{form.csrf_token}} {{form.sort_by}}
+    <input type="submit" value="Filter" class="FilterBtn" />
+  </form>
+</div>
 
 <div class="blog_post">
   {% for post in posts %}

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,EmailField, PasswordField, SubmitField, IntegerField
+from wtforms import StringField,EmailField, PasswordField, SubmitField, IntegerField, SelectField
 from wtforms.validators import DataRequired, EqualTo, ValidationError, Regexp, NumberRange
 from blog.models import User
 
@@ -29,3 +29,7 @@ class CommentForm(FlaskForm):
 class RatingForm(FlaskForm):
   stars = IntegerField('Stars', validators=[DataRequired(), NumberRange(min=0,max=5)])
   submit = SubmitField('Add Rating')
+
+class SortForm(FlaskForm):
+    sort_by = SelectField(u'Sort By Date', choices=[('1', 'date_asc'), ('2', 'date_desc')])
+    submit = SubmitField('Filter')

@@ -1,16 +1,21 @@
 from flask import render_template, url_for, request, redirect, flash
 from blog import app, db
 from blog.models import User, Post, Comment, Rating
-from blog.forms import RegistrationForm, LoginForm, CommentForm, RatingForm
+from blog.forms import RegistrationForm, LoginForm, CommentForm, RatingForm, SortForm
 from flask_login import login_required, login_user, logout_user, current_user
 from sqlalchemy import exc
 
 @app.route("/")
 
-@app.route("/home")
+@app.route("/home",methods=['GET','POST'])
 def home():
   posts=Post.query.all()
-  return render_template('home.html',posts=posts)
+  form = SortForm()
+  if form.is_submitted():
+    if form.sort_by.data == '2':
+      posts = Post.query.order_by(Post.date.desc()).all()
+    redirect(url_for('home'))
+  return render_template('home.html',posts=posts,form=form)
 
 
 @app.route("/post/<int:post_id>")
