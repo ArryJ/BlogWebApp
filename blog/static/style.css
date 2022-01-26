@@ -36,6 +36,9 @@ html {
   -webkit-font-smoothing: antialiased;
   padding: 20px 0;
 }
+.content {
+  padding: 4.4rem 0 3.6rem 0;
+}
 
 .blog_post {
   width: 90%;
@@ -47,12 +50,12 @@ html {
 }
 @media (min-width: 30em) {
   .blog_post {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 @media (min-width: 60em) {
   .blog_post {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -100,11 +103,179 @@ html {
   size: cover;
   position: center center;
 }
-@media (min-width: 60em) {
-  .item1 {
-    grid-column: 1 / span 2;
-  }
-  .item1 h1 {
-    font-size: 24px;
-  }
+
+.flashes {
+  border-width: 2px;
+}
+.row {
+  width: 92%;
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+.post {
+  padding: 4.4rem 0 3.6rem 0;
+}
+
+.entry {
+  padding-bottom: 1.2rem;
+  margin-bottom: 3.2rem;
+}
+.entry__header {
+  border: none;
+  height: auto;
+}
+.entry h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: black;
+}
+.entry__meta ul {
+  list-style: none;
+  margin: 0.8rem 0 2rem;
+  font-size: 1.422;
+  color: #a7a7a7;
+  line-height: 2.8rem;
+}
+.entry__meta ul li {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-family: "Merriweather", serif;
+}
+.entry__content-media {
+  margin: 3.2rem 0 4.8rem;
+  align-content: center;
+}
+.entry__content-media img {
+  vertical-align: bottom;
+}
+.post_rating {
+  padding: 1rem;
+}
+.ratingForm {
+  padding: 1rem 1rem;
+}
+.ratingForm span {
+  margin: 1rem 1rem;
+}
+.ratingForm input[type="number"] {
+  padding: 1rem 1rem;
+}
+.comments {
+  padding-top: 4rem;
+  padding-bottom: 1.2rem;
+  border-top: 1px solid black;
+}
+.comments ul {
+  list-style-type: none;
+}
+.commentList {
+  margin: 6rem 0 5.6rem;
+  padding: 0;
+  border: 1px solid black;
+}
+.commentList > .comment {
+  position: relative;
+  list-style: none;
+  margin: 0 1rem;
+  padding: 1rem 0 0 0;
+}
+.comment__info {
+  position: relative;
+}
+.comment__info .comment__author {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.778rem;
+  font-style: normal;
+  color: #272727;
+}
+.comment__meta {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-size: 0.8rem;
+  line-height: 2rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  color: #a7a7a7;
+}
+.comment__meta .comment__time {
+  margin-right: 0.8rem;
+}
+.comment__text {
+  clear: both;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.comment__text p {
+  margin: 1.1rem 1rem;
+}
+.commentForm input {
+  margin-top: 10px;
+}
+.commentArea {
+  width: 100%;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+.submitBtn {
+  transition-duration: 0.4s;
+  padding: 1rem 1rem;
+}
+
+.submitBtn:active {
+  background-color: Black;
+  color: white;
+}
+
+.registrationForm input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0 3rem 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.registrationForm input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.registerBtn {
+  transition-duration: 0.4s;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+.registerBtn:active {
+  background-color: Black;
+  color: white;
+}
+
+.loginForm input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0 3rem 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.loginForm input[type="text"]:focus,
+input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
 }

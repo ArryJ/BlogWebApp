@@ -1,25 +1,81 @@
-{% extends "layout.html" %}
-{% block content %}
-<img src="{{ url_for('static', filename='img/' + post.image_file) }}">
-<p>"{{ post.title }}" &nbsp Author: {{ post.user.first_name }}</p>
-<p>{{ post.content }}</p>
-{% for comment in post.comments %}
-{{comment.user.first_name}}
-{{comment.content}}
-{% endfor %}
-<form action="/post/{{post.id}}/comment" method="POST">
-    {{ form.csrf_token }}
+{% extends "layout.html" %} {% block content %}
+<div class="row">
+  <div class="column">
+    <div class="post">
+      <article class="entry">
+        <header class="entry__header">
+          <h2 class="entry__title h1">{{post.title}}</h2>
 
-{{ form.content }}
-<input type="submit" value="Add Comment">
-</form>
+          <div class="entry__meta">
+            <ul>
+              <li>{{post.date.strftime('%d-%m-%Y')}}</li>
+              <li>{{post.user.first_name}}</li>
+            </ul>
+          </div>
+        </header>
+        <!-- entry__header -->
 
-<form action="/post/{{post.id}}/rating" method="POST">
-{{ form_rating.csrf_token }}
-{{ form_rating.stars }}
-<input type="submit" value="Add Rating">
-</form>
-{% for rating in post.ratings %}
-{{ rating.stars }}
-{% endfor %}
+        <div class="entry__content-media">
+          <img
+            src="{{ url_for('static', filename='img/' + post.image_file) }}"
+            sizes="(max-width: 1000px) 100vw, 1000px"
+            alt=""
+          />
+        </div>
+
+        <div class="entry__content">
+          <p>{{ post.content }}</p>
+        </div>
+        <!-- entry__content -->
+      </article>
+    </div>
+
+    <div class="post_rating">
+      {% set total = [] %} {% for rating in post.ratings %} {% if
+      total.append(rating.stars) %} {% endif %} {% endfor %} {% if total|length
+      == 0 %} Average Rating: 0 (No rating given) {% else %} Average Rating: {{
+      total | sum / total | length }}
+      <span>(Rating by {{total | length}} users.)</span> {% endif %}
+    </div>
+    <div class="ratingForm">
+      <form action="/post/{{post.id}}/rating" method="POST">
+        <span>{{ form_rating.csrf_token }} {{ form_rating.stars }}</span>
+
+        <input type="submit" value="Add Rating" class="submitBtn" />
+      </form>
+    </div>
+    <div class="comments">
+      <h3>{{post.comments|length}} Comments</h3>
+      <ul class="commentList">
+        {% for comment in post.comments %}
+        <li class="comment">
+          <div class="comment__content">
+            <div class="comment__info">
+              <div class="comment__author">{{comment.user.first_name}}</div>
+
+              <div class="comment__meta">
+                <div class="comment__time">{{comment.date}}</div>
+              </div>
+            </div>
+
+            <div class="comment__text">
+              <p>{{comment.content}}</p>
+            </div>
+          </div>
+          &nbsp;
+        </li>
+
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="commentForm">
+      <form action="/post/{{post.id}}/comment" method="POST">
+        {{ form.csrf_token }}
+        <span>{{ form.content(class_="commentArea") }}</span>
+
+        <input type="submit" value="Add Comment" class="submitBtn" />
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock content %}
